@@ -1,4 +1,4 @@
-const { DB_URL, dbConnectionOptions } = require("./config/ServerConfig");
+const { DB_URL, dbConnectionOptions } = require("../config/ServerConfig");
 
 const mongoClient = require("mongodb");
 
@@ -25,7 +25,9 @@ const getConnection = async () => {
 //Create Record
 const insertOne = async (collectionName, payload) => {
   try {
-    const response = await mongoInst.collectionName.insertOne(payload);
+    const response = await mongoInst
+      .collection(collectionName)
+      .insertOne(payload);
   } catch (error) {
     console.log(error);
   }

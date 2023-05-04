@@ -1,14 +1,36 @@
+const { getRecords, createRecord } = require("../Controllers/recordsActions");
+const { ApiResponseCls } = require("../utilities/apiResponseCls");
+
 const assetRouter = require("express").Router();
+
+let resStatus = 200;
 
 assetRouter
   .route("/")
   .get((req, res) => {
     const qryParams = req.query.qry;
-    console.log(qryParams);
-    res.status(200).send("Login Route is Working" + " " + qryParams["name"]);
+
+    let apiResCls = new ApiResponseCls();
+    apiResCls.resData = getRecords(qryParams);
+    try {
+      apiResCls.resData = getRecords(qryParams);
+    } catch (error) {
+      apiResCls.error = error;
+    }
+    res.status(resStatus).send(apiResCls);
   })
-  .get((req, res) => {
-    res.status(200).send("Login Route is Working");
+  .post((req, res) => {
+    const qryParams = req.query.qry;
+    const bodyData = req.body;
+
+    let apiResCls = new ApiResponseCls();
+    apiResCls.resData = createRecord(bodyData, qryParams);
+    try {
+      apiResCls.resData = getRecords(qryParams);
+    } catch (error) {
+      apiResCls.error = error;
+    }
+    res.status(resStatus).send(apiResCls);
   });
 
 module.exports = assetRouter;
