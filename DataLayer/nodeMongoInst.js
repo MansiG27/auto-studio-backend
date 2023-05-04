@@ -1,4 +1,4 @@
-const { DB_URL, dbConnectionOptions } = require("./ServerConfig");
+const { DB_URL, dbConnectionOptions } = require("./config/ServerConfig");
 
 const mongoClient = require("mongodb");
 
