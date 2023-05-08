@@ -22,21 +22,28 @@ const getConnection = async () => {
   }
 };
 
+// const closeconnection = async () => {
+//   nodeMongoClient.close();
+// };
+
 //Create Record
 const insertOne = async (collectionName, payload) => {
+  let response = null;
   try {
-    const response = await mongoInst
+    response = await nodeMongoClient
       .collection(collectionName)
       .insertOne(payload);
   } catch (error) {
     console.log(error);
   }
+  return response;
 };
+
 const insertMany = async (collection, filter, payload) => {};
 
 //read or Get record
 const findOne = async () => {};
-const find = async () => {};
+const find = async (filter, projection) => {};
 
 //Update Record
 const updateOne = async () => {};

@@ -1,4 +1,4 @@
-import { actionLogin, actionRegister } from "../BusinessLayer/loginActions";
+import { actionLogin, actionRegister } from "../BusinessLayer/user-auth";
 
 export const loginAction = (params) => {
   return actionLogin(params);

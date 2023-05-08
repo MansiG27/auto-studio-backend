@@ -1,5 +1,4 @@
 const {
-  userAuthActions,
   loginAction,
   registerAction,
 } = require("../Controllers/user-authActions");
